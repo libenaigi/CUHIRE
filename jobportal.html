@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings - CUHIRE</title>
+    <link rel="stylesheet" href="css/jobportal.css" />
+    <style>
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .logo-container img {
+        height: 40px;
+      }
+
+      .logo-container span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0a0a23;
+      }
+
+      .footer-section .logo-container span {
+        color: white;
+      }
+
+      /* Simple styles for job items */
+      .job-listings {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 20px 0;
+      }
+      .job-item {
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      .job-item h3 {
+        margin: 0 0 5px 0;
+      }
+      .job-item p {
+        margin: 0 0 5px 0;
+      }
+      .job-item span {
+        font-size: 0.9rem;
+        color: #555;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="index.html" class="logo-container">
+          <img src="images/logo.png" alt="CUHIRE Logo" />
+          <span>CUHIRE</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="jobportal.html">Find Jobs</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html" class="signup-btn">Sign Up</a>
+      </nav>
+    </header>
+
+    <section class="listing-header">
+      <h1>Find Your Perfect Job</h1>
+      <p>Search and filter through hundreds of jobs tailored for CHRISTITES</p>
+    </section>
+
+    <section class="job-filter">
+      <input type="text" placeholder="Search by job title or keyword" />
+      <select>
+        <option>All Categories</option>
+        <option>Business & Management</option>
+        <option>Technology & IT</option>
+        <option>Marketing & Sales</option>
+        <option>Finance</option>
+      </select>
+      <button>Apply Filters</button>
+    </section>
+
+    <section class="job-listings">
+      <!-- Jobs will be dynamically inserted here -->
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img
+              src="images/logo.png"
+              alt="CUHIRE Logo"
+              class="footer-logo-img"
+            />
+            <span>CUHIRE</span>
+          </div>
+          <p>
+            Connecting talent with opportunity. Find your dream job or the
+            perfect candidate.
+          </p>
+          <div class="socials">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🔗</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>For Job Seekers</h4>
+          <ul>
+            <li><a href="jobportal.html">Browse Jobs</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="#">Applications</a></li>
+            <li><a href="account.html">Profile Settings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For Recruiters</h4>
+          <ul>
+            <li><a href="post-job.html">Post a Job</a></li>
+            <li><a href="recruiter-dashboard.html">Dashboard</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
+    </footer>
+
+    <script>
+      async function fetchJobs() {
+        try {
+          const token = localStorage.getItem("token"); // optional if needed
+          const res = await fetch("http://localhost:3000/api/jobs", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token ? "Bearer " + token : "",
+            },
+          });
+          const result = await res.json();
+          const jobs = result.data; // <-- use result.data
+          const listingsContainer = document.querySelector(".job-listings");
+          listingsContainer.innerHTML = "";
+
+          if (!jobs || jobs.length === 0) {
+            listingsContainer.innerHTML = "<p>No jobs available.</p>";
+            return;
+          }
+
+          jobs.forEach((job) => {
+            const jobDiv = document.createElement("div");
+            jobDiv.classList.add("job-item");
+            jobDiv.innerHTML = `
+              <h3>${job.title}</h3>
+              <p>Company: ${job.postedBy?.name || "N/A"}</p>
+              <p>Location: ${job.location}</p>
+              <span class="badge">${job.jobType}</span>
+              <span class="salary">Salary: ${
+                job.formattedSalary || job.salary
+              }</span>
+              <span>Skills: ${job.skills.join(", ")}</span>
+              <button>View Details</button>
+            `;
+            listingsContainer.appendChild(jobDiv);
+          });
+        } catch (err) {
+          console.error(err);
+          alert("Failed to load jobs");
+        }
+      }
+
+      fetchJobs();
+    </script>
+  </body>
+</html>

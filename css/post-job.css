@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f7f8fc;
+  color: #222;
+}
+
+/* ------------------ NAVBAR ------------------ */
+.top-nav {
+  background-color: white;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-container img {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-container span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-size: 15px;
+}
+
+.signup-btn {
+  background-color: #0a1f44;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ------------------ MAIN PAGE ------------------ */
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------ FORM ------------------ */
+.form-section {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h3 {
+  font-size: 20px;
+  margin-bottom: 1.5rem;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.flex-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.flex-row input[type="text"],
+.flex-row select {
+  flex: 1;
+}
+
+.checkbox {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.skills label {
+  font-weight: 600;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.tag {
+  background: #e7f0ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.skill-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skill-input input {
+  flex: 1;
+}
+
+.add-skill {
+  background: #0a1f44;
+  color: white;
+  border: none;
+  padding: 0 1rem;
+  font-size: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-btn {
+  background-color: #0a1f44;
+  color: white;
+}
+
+.secondary-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.footer {
+  background-color: #111827;
+  color: white;
+  padding: 40px 10% 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  width: 100%;
+}
+
+.footer-col h4 {
+  margin-bottom: 12px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.footer-col a:hover {
+  text-decoration: underline;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-img {
+  width: 32px;
+  height: auto;
+}
+
+.socials {
+  margin-top: 1rem;
+}
+
+.socials a {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.socials a:hover {
+  color: #60a5fa; /* light blue hover */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.socials span {
+  margin-right: 10px;
+}
+
+.copyright {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  color: #9ca3af;
+}

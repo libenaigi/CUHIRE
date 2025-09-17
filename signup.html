@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - CUHIRE</title>
+    <link rel="stylesheet" href="css/signup.css" />
+    <style>
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .logo-container img {
+        height: 40px;
+      }
+
+      .logo-container span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0a0a23;
+      }
+
+      .footer-section .logo-container span {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="index.html" class="logo-container">
+          <img src="images/logo.png" alt="CUHIRE Logo" />
+          <span>CUHIRE</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="jobportal.html">Find Jobs</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html" class="signup-btn">Sign Up</a>
+      </nav>
+    </header>
+
+    <section class="form-container">
+      <h2>Create an Account</h2>
+      <p>Join our platform and start your journey</p>
+
+      <div class="tab-selector">
+        <button class="active">Job Seeker</button>
+        <button>Recruiter</button>
+        <button>Admin</button>
+      </div>
+
+      <form class="login-form" id="signupForm">
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="First Name" required />
+
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="Last Name" required />
+
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="********" required />
+
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="********"
+          required
+        />
+
+        <label class="checkbox">
+          <input type="checkbox" required />
+          I agree to the <a href="#">Terms of Service</a> and
+          <a href="#">Privacy Policy</a>
+        </label>
+
+        <button type="submit">Create Account</button>
+
+        <p class="form-footer">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img
+              src="images/logo.png"
+              alt="CUHIRE Logo"
+              class="footer-logo-img"
+            />
+            <span>CUHIRE</span>
+          </div>
+          <p>
+            Connecting talent with opportunity. Find your dream job or the
+            perfect candidate.
+          </p>
+          <div class="socials">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🔗</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>For Job Seekers</h4>
+          <ul>
+            <li><a href="jobportal.html">Browse Jobs</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="#">Applications</a></li>
+            <li><a href="account.html">Profile Settings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For Recruiters</h4>
+          <ul>
+            <li><a href="post-job.html">Post a Job</a></li>
+            <li><a href="recruiter-dashboard.html">Dashboard</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
+    </footer>
+
+    <!-- JS to connect frontend to backend and handle tabs -->
+    <script>
+      // Tab selector functionality
+      const tabs = document.querySelectorAll(".tab-selector button");
+      let selectedRole = "jobseeker"; // default role
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          selectedRole = tab.textContent.toLowerCase().replace(" ", ""); // jobseeker, recruiter, admin
+        });
+      });
+
+      // Signup form submit
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const firstName = document.getElementById("firstName").value;
+          const lastName = document.getElementById("lastName").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          const requestBody = {
+            name: firstName + " " + lastName,
+            email,
+            password,
+            role: selectedRole,
+          };
+
+          console.log("Sending signup data:", requestBody); // <-- log request
+
+          try {
+            const res = await fetch(
+              "http://localhost:3000/api/users/register",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestBody),
+              }
+            );
+
+            const data = await res.json();
+            console.log("Backend response:", res.status, data); // <-- log backend response
+
+            if (res.ok) {
+              alert("Signup successful! You can now login.");
+              window.location.href = "login.html";
+            } else {
+              alert(data.message || "Signup failed");
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Server error");
+          }
+        });
+    </script>
+  </body>
+</html>

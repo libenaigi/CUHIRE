@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruiter Dashboard</title>
+    <link rel="stylesheet" href="css/recruiter-dashboard.css" />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="CUHIRE Logo" />
+        <span><strong>CUHIRE</strong></span>
+      </div>
+      <div class="nav-links">
+        <a href="jobportal.html">Find Jobs</a>
+        <a href="login.html">Login</a>
+        <button class="signup-btn">Sign Up</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+      <header>
+        <h1>Recruiter Dashboard</h1>
+        <p>Manage your job postings and candidates</p>
+        <div class="header-actions">
+          <button class="btn-primary">+ Post New Job</button>
+          <input type="text" placeholder="Search Candidates" />
+        </div>
+      </header>
+
+      <section class="stats">
+        <div class="stat-card">
+          <img src="https://img.icons8.com/ios-filled/50/briefcase.png" />
+          <div>
+            <h2>8</h2>
+            <p>Active Jobs</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <img src="https://img.icons8.com/ios-filled/50/groups.png" />
+          <div>
+            <h2>124</h2>
+            <p>Total Applications</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <img src="https://img.icons8.com/ios-filled/50/visible.png" />
+          <div>
+            <h2>56</h2>
+            <p>Viewed Profiles</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            alt="Hired Icon"
+          />
+
+          <div>
+            <h2>3</h2>
+            <p>Hired Candidates</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="jobs-section">
+        <div class="section-header">
+          <h3>Recent Job Postings</h3>
+          <a href="#">View All</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Applicants</th>
+              <th>Posted</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Senior Frontend Developer</td>
+              <td>3<br /><span class="new-applicants">+ 5 new</span></td>
+              <td>2 weeks ago</td>
+              <td><span class="badge active">Active</span></td>
+              <td><a href="#">View</a></td>
+            </tr>
+            <tr>
+              <td>UX Designer</td>
+              <td>28<br /><span class="new-applicants">+ 3 new</span></td>
+              <td>1 week ago</td>
+              <td><span class="badge active">Active</span></td>
+              <td><a href="#">View</a></td>
+            </tr>
+            <tr>
+              <td>Product Manager</td>
+              <td>62</td>
+              <td>1 month ago</td>
+              <td><span class="badge closed">Closed</span></td>
+              <td><a href="#">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="post-btn">+ Post New Job</button>
+      </section>
+
+      <section class="candidates-section">
+        <div class="section-header">
+          <h3>Top Candidates</h3>
+          <a href="#">View All</a>
+        </div>
+        <div class="candidate-list">
+          <div class="candidate">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" />
+            <div>
+              <h4>Sarah Johnson 1962345</h4>
+              <p>Senior Frontend Developer<br /><span>5 years exp</span></p>
+            </div>
+            <div class="match">95% Match</div>
+          </div>
+
+          <div class="candidate">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" />
+            <div>
+              <h4>Michael Chen 2062519</h4>
+              <p>UX Designer<br /><span>4 years exp</span></p>
+            </div>
+            <div class="match">88% Match</div>
+          </div>
+
+          <div class="candidate">
+            <img src="https://randomuser.me/api/portraits/women/55.jpg" />
+            <div>
+              <h4>Emily Rodriguez 1876234</h4>
+              <p>Product Manager<br /><span>7 years exp</span></p>
+            </div>
+            <div class="match">82% Match</div>
+          </div>
+        </div>
+        <a class="search-btn" href="#">🔍 Search More Candidates</a>
+      </section>
+
+      <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img
+              src="images/logo.png"
+              alt="CUHIRE Logo"
+              class="footer-logo-img"
+            />
+            <span>CUHIRE</span>
+          </div>
+          <p>
+            Connecting talent with opportunity. Find your dream job or the
+            perfect candidate.
+          </p>
+          <div class="socials">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🔗</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>For Job Seekers</h4>
+          <ul>
+            <li><a href="jobportal.html">Browse Jobs</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="#">Applications</a></li>
+            <li><a href="account.html">Profile Settings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For Recruiters</h4>
+          <ul>
+            <li><a href="post-job.html">Post a Job</a></li>
+            <li><a href="recruiter-dashboard.html">Dashboard</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
+    </footer>
+  </body>
+</html>

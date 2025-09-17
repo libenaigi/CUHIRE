@@ -1,0 +1,274 @@
+/* 1) Design Tokens */
+:root {
+  /* Colors */
+  --color-primary: #0b2343; /* update from Figma */
+  --color-on-primary: #ffffff;
+  --color-surface: #ffffff;
+  --color-bg: #f9f9fb;
+  --color-text: #333333;
+  --color-muted: #666666;
+
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --line-height-base: 1.5;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem; /* 4px  */
+  --space-sm: 0.5rem; /* 8px  */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+}
+
+/* 2) Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+main {
+  flex: 1;
+}
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+}
+
+/* 3) Navbar */
+.navbar {
+  background: var(--color-surface);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+}
+.navbar .logo {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.navbar nav a {
+  margin-left: var(--space-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+.navbar nav a:hover {
+  color: var(--color-primary);
+}
+.btn-signup {
+  background: var(--color-primary);
+  color: var(--color-on-primary) !important;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between logo and text */
+}
+
+.logo-img {
+  width: 32px; /* adjust size as needed */
+  height: auto;
+}
+
+/* 4) Page Title */
+.page-title {
+  margin-bottom: var(--space-lg);
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+/* 5) Settings Layout */
+.settings-wrapper {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+/* 6) Sidebar */
+.sidebar {
+  flex: 1;
+  background: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin-bottom: var(--space-sm);
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-muted);
+  font-size: var(--font-size-base);
+}
+.sidebar .icon {
+  margin-right: var(--space-sm);
+}
+.sidebar li.active a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* 7) Content Card */
+.content {
+  flex: 3;
+}
+.card {
+  background: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.card h2 {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+}
+
+/* 8) Form Elements */
+.form-row {
+  display: flex;
+  gap: var(--space-md);
+}
+.form-group {
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"] {
+  width: 100%;
+  padding: var(--space-sm);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+}
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+.checkbox input {
+  margin-right: var(--space-md);
+  margin-top: 0.2rem;
+}
+
+/* 9) Buttons */
+.btn-save,
+.btn-signup,
+button {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+}
+.btn-save:hover,
+.btn-signup:hover,
+button:hover {
+  opacity: 0.9;
+}
+
+/* 10) Footer */
+.footer {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--space-lg) 0 var(--space-md);
+  margin-top: var(--space-xl);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-lg);
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col h3,
+.footer-col h4 {
+  margin-bottom: var(--space-sm);
+}
+.footer-col p,
+.footer-col ul {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-primary);
+}
+.footer-col ul {
+  list-style: none;
+}
+.footer-col ul li {
+  margin-bottom: var(--space-xs);
+}
+.footer-col a {
+  color: var(--color-on-primary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+}
+.footer-col a:hover {
+  text-decoration: underline;
+}
+.footer .socials a {
+  margin-right: var(--space-sm);
+  font-size: 1.2rem;
+}
+.footer-bottom {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-md);
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-logo-img {
+  width: 32px;
+  height: auto;
+}

@@ -1,0 +1,153 @@
+<!-- account.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Account Settings – CUHIRE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="container">
+        <a href="account.html" class="logo">
+          <img src="images/logo.png" alt="CUHIRE Logo" class="logo-img" />
+          <span>CUHIRE</span>
+        </a>
+        <nav>
+          <a href="jobportal.html">Find Jobs</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html" class="btn-signup">Sign Up</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- PAGE TITLE + LAYOUT -->
+    <main class="container">
+      <h1 class="page-title">Account Settings</h1>
+
+      <div class="settings-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <ul>
+            <li class="active">
+              <a href="account.html">
+                <span class="icon">👤</span>
+                Profile
+              </a>
+            </li>
+            <li>
+              <a href="password.html">
+                <span class="icon">🔒</span>
+                Password
+              </a>
+            </li>
+            <li>
+              <a href="notifications.html">
+                <span class="icon">🔔</span>
+                Notifications
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- CONTENT: PROFILE FORM -->
+        <section class="content">
+          <div class="card">
+            <h2>Profile Information</h2>
+
+            <div class="avatar-upload">
+              <div class="avatar-placeholder">
+                <span class="icon">📷</span>
+              </div>
+              <p>Click to upload a new profile picture</p>
+            </div>
+
+            <form>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" type="text" value="John" />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" type="text" placeholder="Last Name" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" value="john@gmail.com" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" value="9900334455" />
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input id="location" type="text" value="BENGALURU, INDIA" />
+              </div>
+
+              <button type="submit" class="btn-save">Save Changes</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img
+              src="images/logo.png"
+              alt="CUHIRE Logo"
+              class="footer-logo-img"
+            />
+            <span>CUHIRE</span>
+          </div>
+          <p>
+            Connecting talent with opportunity. Find your dream job or the
+            perfect candidate.
+          </p>
+          <div class="socials">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🔗</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>For Job Seekers</h4>
+          <ul>
+            <li><a href="jobportal.html">Browse Jobs</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="#">Applications</a></li>
+            <li><a href="account.html">Profile Settings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For Recruiters</h4>
+          <ul>
+            <li><a href="post-job.html">Post a Job</a></li>
+            <li><a href="recruiter-dashboard.html">Dashboard</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
+    </footer>
+  </body>
+</html>

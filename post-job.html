@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a New Job | CUHIRE</title>
+    <link rel="stylesheet" href="css/post-job.css" />
+    <style>
+      .tag {
+        display: inline-block;
+        background: #eee;
+        padding: 3px 8px;
+        margin: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-nav">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="CUHIRE Logo" />
+        <span>CUHIRE</span>
+      </div>
+      <div class="nav-links">
+        <a href="jobportal.html">Find Jobs</a>
+        <a href="login.html">Login</a>
+        <button class="signup-btn">Sign Up</button>
+      </div>
+    </div>
+
+    <div class="page-container">
+      <header>
+        <h1>Post a New Job</h1>
+      </header>
+
+      <div class="form-section">
+        <h3>Job Details</h3>
+
+        <form id="job-form">
+          <input
+            type="text"
+            placeholder="Job Title"
+            id="job-title"
+            class="full-input"
+            required
+          />
+
+          <div class="flex-row">
+            <select id="job-type">
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="internship">Internship</option>
+            </select>
+
+            <select id="job-level">
+              <option>Entry Level</option>
+              <option>Mid Level</option>
+              <option>Senior Level</option>
+            </select>
+          </div>
+
+          <div class="flex-row">
+            <input
+              type="text"
+              placeholder="Location"
+              id="job-location"
+              required
+            />
+            <label class="checkbox">
+              <input type="checkbox" id="job-remote" /> Remote Position
+            </label>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Salary Range"
+            id="job-salary"
+            required
+          />
+          <textarea
+            placeholder="Job Description"
+            id="job-description"
+            required
+          ></textarea>
+
+          <div class="skills">
+            <label>Required Skills</label>
+            <div class="skill-input">
+              <input type="text" id="job-skill" placeholder="Add a skill" />
+              <button type="button" class="add-skill" id="add-skill">+</button>
+            </div>
+            <div class="tags" id="skills-tags"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="secondary-btn">Save as Draft</button>
+            <button type="submit" class="primary-btn">Post Job</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer"></footer>
+
+    <script>
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        alert("You must be logged in as a recruiter to post a job.");
+        window.location.href = "login.html";
+      } else {
+        const skills = [];
+
+        document.querySelector("#add-skill").addEventListener("click", () => {
+          const skillInput = document.querySelector("#job-skill");
+          const skill = skillInput.value.trim();
+          if (skill) {
+            skills.push(skill);
+            const tagContainer = document.querySelector("#skills-tags");
+            const span = document.createElement("span");
+            span.classList.add("tag");
+            span.textContent = skill + " ✕";
+            span.addEventListener("click", () => {
+              skills.splice(skills.indexOf(skill), 1);
+              span.remove();
+            });
+            tagContainer.appendChild(span);
+            skillInput.value = "";
+          }
+        });
+
+        document
+          .querySelector("#job-form")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const jobData = {
+              title: document.querySelector("#job-title").value,
+              jobType: document.querySelector("#job-type").value,
+              location: document.querySelector("#job-location").value,
+              salary: document.querySelector("#job-salary").value,
+              description: document.querySelector("#job-description").value,
+              skills: skills,
+            };
+
+            try {
+              const res = await fetch("http://localhost:3000/api/jobs", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + token,
+                },
+                body: JSON.stringify(jobData),
+              });
+
+              const data = await res.json();
+              if (res.ok) {
+                alert("Job posted successfully!");
+                window.location.href = "dashboard.html";
+              } else {
+                let errorMessage = data.message || "Failed to post job.";
+                if (data.errors) {
+                  errorMessage = data.errors
+                    .map((err) => err.message)
+                    .join("\n");
+                }
+                alert(errorMessage);
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Error posting job");
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
