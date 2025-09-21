@@ -22,15 +22,6 @@ const userSchema = new mongoose.Schema(
       default: "jobseeker",
     },
 
-    company: {
-      type: String,
-      trim: true,
-      maxlength: 100,
-      required: function () {
-        return this.role === "recruiter";
-      },
-    },
-
     phone: {
       type: String,
       trim: true,
