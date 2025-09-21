@@ -80,7 +80,7 @@
           <a href="#">Privacy Policy</a>
         </label>
 
-        <button type="submit">Create Account</button>
+        <button type="submit" id="submitButton">Create Account</button>
 
         <p class="form-footer">
           Already have an account? <a href="login.html">Sign in</a>
@@ -88,7 +88,6 @@
       </form>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-grid">
         <div class="footer-col">
@@ -142,7 +141,6 @@
       <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
     </footer>
 
-    <!-- JS to connect frontend to backend and handle tabs -->
     <script>
       // Tab selector functionality
       const tabs = document.querySelectorAll(".tab-selector button");
@@ -157,56 +155,74 @@
       });
 
       // Signup form submit
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
+      const signupForm = document.getElementById("signupForm");
+      const submitButton = document.getElementById("submitButton"); // <-- Get the button
 
-          const firstName = document.getElementById("firstName").value;
-          const lastName = document.getElementById("lastName").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          const confirmPassword =
-            document.getElementById("confirmPassword").value;
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-          if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
+        // CHANGE 1: Disable button to prevent multiple submissions
+        submitButton.disabled = true;
+        submitButton.textContent = "Creating Account...";
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          // Re-enable button on validation failure
+          submitButton.disabled = false;
+          submitButton.textContent = "Create Account";
+          return;
+        }
+
+        const requestBody = {
+          name: firstName + " " + lastName,
+          email,
+          password,
+          role: selectedRole,
+        };
+
+        console.log("Sending signup data:", requestBody);
+
+        try {
+          const res = await fetch("https://cuhire-4.onrender.com/api/users/register", { // <-- THIS LINE IS UPDATED
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestBody),
+          });
+
+          // CHANGE 2: Check if the response was successful BEFORE trying to parse JSON
+          if (!res.ok) {
+            // Try to get a more specific error message from the backend if it exists
+            const errorData = await res
+              .json()
+              .catch(() => ({
+                message: `Request failed with status: ${res.status}`,
+              }));
+            throw new Error(errorData.message || "An unknown error occurred.");
           }
 
-          const requestBody = {
-            name: firstName + " " + lastName,
-            email,
-            password,
-            role: selectedRole,
-          };
+          // If we reach here, the response is OK (status 200-299)
+          const data = await res.json();
+          console.log("Backend response:", data);
 
-          console.log("Sending signup data:", requestBody); // <-- log request
-
-          try {
-            const res = await fetch(
-              "http://localhost:3000/api/users/register",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(requestBody),
-              }
-            );
-
-            const data = await res.json();
-            console.log("Backend response:", res.status, data); // <-- log backend response
-
-            if (res.ok) {
-              alert("Signup successful! You can now login.");
-              window.location.href = "login.html";
-            } else {
-              alert(data.message || "Signup failed");
-            }
-          } catch (err) {
-            console.error(err);
-            alert("Server error");
-          }
-        });
+          alert("Signup successful! You can now login.");
+          window.location.href = "login.html";
+        } catch (err) {
+          // This will now catch network errors AND our custom error from the !res.ok check
+          console.error("Signup Error:", err);
+          alert(`Signup failed: ${err.message}`);
+        } finally {
+          // CHANGE 3: Use a 'finally' block to re-enable the button whether the request succeeds or fails
+          submitButton.disabled = false;
+          submitButton.textContent = "Create Account";
+        }
+      });
     </script>
   </body>
 </html>
