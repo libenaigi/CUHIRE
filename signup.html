@@ -190,7 +190,7 @@
         console.log("Sending signup data:", requestBody);
 
         try {
-          const res = await fetch("https://cuhire-4.onrender.com/api/users/register", { // <-- THIS LINE IS UPDATED
+          const res = await fetch("https://cuhire-4.onrender.com/api/auth/register", { //...// <-- THIS LINE IS UPDATED
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestBody),
@@ -226,3 +226,4 @@
     </script>
   </body>
 </html>
+
