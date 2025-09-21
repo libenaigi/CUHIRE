@@ -30,7 +30,6 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
     <header class="header">
       <div class="logo-container">
         <img src="images/logo.png" alt="CUHIRE Logo" class="logo-img" />
@@ -43,14 +42,12 @@
       </nav>
     </header>
 
-    <!-- Dashboard Content -->
     <main class="dashboard">
       <section class="welcome">
         <h2>Welcome to your Dashboard 👋</h2>
         <p>Here's what's happening with your job search today.</p>
       </section>
 
-      <!-- Stats Boxes -->
       <section class="stats">
         <div class="stat-box">
           <span>📁</span>
@@ -74,16 +71,13 @@
         </div>
       </section>
 
-      <!-- Jobs Section -->
       <section class="jobs-section">
         <h3>Available Jobs</h3>
         <div id="jobs-container">
-          <!-- Jobs will be dynamically inserted here -->
-        </div>
+          </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-grid">
         <div class="footer-col">
@@ -137,7 +131,6 @@
       <div class="footer-bottom">&copy; 2025 CUHIRE. All rights reserved.</div>
     </footer>
 
-    <!-- JS to check login & fetch jobs -->
     <script>
       const token = localStorage.getItem("token");
 
@@ -145,7 +138,7 @@
         alert("Please login first!");
         window.location.href = "login.html";
       } else {
-        fetch("http://localhost:3000/api/jobs", {
+        fetch("https://cuhire-4.onrender.com/api/jobs", { // <-- THIS LINE IS UPDATED
           method: "GET",
           headers: {
             "Content-Type": "application/json",
