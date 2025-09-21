@@ -145,11 +145,11 @@
             };
 
             try {
-              const res = await fetch("http://localhost:3000/api/jobs", {
+              const res = await fetch("https://cuhire-4.onrender.com/api/jobs", { // <-- THIS LINE IS UPDATED
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: "Bearer " + token,
+                  Authorization: "Bearer " + token, // This correctly sends your login token
                 },
                 body: JSON.stringify(jobData),
               });
